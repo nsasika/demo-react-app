@@ -1,0 +1,61 @@
+.dow {
+  display: block;
+}
+.login {
+  width: 65%;
+  margin: 0 auto;
+  margin-top: 180px;
+}
+.title {
+  text-align: center;
+}
+
+.title img {
+  height: 60px;
+  margin-bottom: 30px;
+}
+
+.title p {
+  color: #000;
+  font-family: "sf_pro_displaybold";
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.button {
+  color: white !important;
+  margin-right: -10%;
+  background-color: rgba(74, 170, 74, 0.952) !important;
+  border: none !important;
+  width: 100.5%;
+}
+
+.buttonColumn {
+  padding-left: 12% !important;
+  padding-right: 13% !important;
+}
+
+.warning {
+  padding-left: 15% !important;
+  padding-right: 9% !important;
+  text-align: center;
+}
+
+.welcome {
+  display: flex;
+  margin-top: 4%;
+  justify-content: center;
+}
+
+.form {
+  width: 75%;
+}
+
+.lable {
+  width: auto !important;
+}
+
+.inputContainer {
+  margin-bottom: 2%;
+}

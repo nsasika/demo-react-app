@@ -1,0 +1,120 @@
+import React, { useState } from "react";
+import { Form, Row, Button, Col } from "react-bootstrap";
+import { BsFillPersonFill } from "react-icons/bs";
+import { FaUnlockAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
+import Route_PATH from "../../resources/router_config";
+import Loader from "../../common/loader/Loader";
+import properties from "../../properties.json";
+
+import Styles from "./login.module.css";
+
+const LoginForm = () => {
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isWarningVisible, setIsWarningVisible] = useState(false);
+
+  const validateForm = (username, password) => {
+    return username.length > 0 && password.length > 0;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    let isValidForm = validateForm(username, password);
+    if (isValidForm && username === "admin" && password === "admin") {
+      setTimeout(() => {
+        navigate(Route_PATH.CUSTOMER);
+      }, 2500);
+    } else {
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsWarningVisible(true);
+      }, 2500);
+    }
+  };
+
+  const handleOnChange = (event) => {
+    if (event.target.id === "formHorizontalUsername")
+      setUsername(event.target.value);
+    if (event.target.id === "formHorizontalPassword")
+      setPassword(event.target.value);
+  };
+
+  return (
+    <div class="d-flex justify-content-center pt-3">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Form className={Styles.form}>
+          <Form.Group
+            as={Row}
+            className={Styles.inputContainer}
+            controlId="formHorizontalUsername"
+          >
+            <Form.Label column sm={2} className={Styles.lable}>
+              <BsFillPersonFill />
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={handleOnChange}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group
+            as={Row}
+            className={Styles.inputContainer}
+            controlId="formHorizontalPassword"
+          >
+            <Form.Label column sm={2} className={Styles.lable}>
+              <FaUnlockAlt />
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={handleOnChange}
+              />
+            </Col>
+          </Form.Group>
+
+          {isWarningVisible && (
+            <Form.Group as={Row} className="mb-21">
+              <Col className={Styles.warning}>
+                <div class="alert alert-danger">
+                  {properties.login.titles.incorrect_credentials}
+                </div>
+              </Col>
+            </Form.Group>
+          )}
+
+          <Form.Group as={Row} className="mb-3">
+            <Col className={Styles.buttonColumn}>
+              <Button
+                variant="success"
+                type="submit"
+                className={Styles.button}
+                onClick={handleSubmit}
+                disabled={!validateForm(username, password)}
+              >
+                Login
+              </Button>
+            </Col>
+          </Form.Group>
+        </Form>
+      )}
+    </div>
+  );
+};
+
+export default LoginForm;
