@@ -1,55 +1,43 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import LoadingPage from "./common/loadingpage/LoadingPage";
-import Login from "./views/Login/Login";
+import NavBar from "./views/Navbar/NavBar";
 import routes from "./routes/routes";
 import { Page404 } from "./views/Page404/Page404";
-import { AppContext } from "./context/AppContext";
 import ROUTE_PATH from "./resources/router_config";
+import properties from "./properties.json";
+
 import "./App.css";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const appContextValue = {
-    isLoggedIn,
-    setIsLoggedIn,
-  };
-
+  let { pathname } = useLocation();
   return (
-    <AppContext.Provider value={appContextValue}>
+    <React.Suspense fallback={<LoadingPage />}>
       <div className="App">
-        <React.Suspense fallback={<LoadingPage></LoadingPage>}>
-          <BrowserRouter>
-            <Routes>
-              {!isLoggedIn ? (
-                <Route
-                  key={ROUTE_PATH.DEFAULT}
-                  exact={true}
-                  path={ROUTE_PATH.DEFAULT}
-                  element={<Login />}
-                />
-              ) : (
-                routes.map((route) => (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    element={route.element}
-                    exact={route.exact}
-                  />
-                ))
-              )}
+        {pathname && pathname !== "/" && (
+          <NavBar companyName={properties.company.name} />
+        )}
+        <main>
+          <Routes>
+            {routes.map((route) => (
               <Route
-                key={ROUTE_PATH.NOT_FOUND}
-                path={ROUTE_PATH.NOT_FOUND}
-                exact={false}
-                element={<Page404 />}
+                key={route.path}
+                path={route.path}
+                element={route.element}
+                exact={route.exact}
               />
-            </Routes>
-          </BrowserRouter>
-        </React.Suspense>
+            ))}
+            <Route
+              key={ROUTE_PATH.NOT_FOUND}
+              path={ROUTE_PATH.NOT_FOUND}
+              exact={false}
+              element={<Page404 />}
+            />
+          </Routes>
+        </main>
       </div>
-    </AppContext.Provider>
+    </React.Suspense>
   );
 };
 

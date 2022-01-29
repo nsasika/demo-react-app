@@ -1,0 +1,21 @@
+.navBar {
+  border-bottom: 0.1rem solid gray;
+}
+
+.button {
+  color: gray !important;
+  margin-right: -10%;
+  background-color: white !important;
+  border: none !important;
+}
+
+.brand {
+  margin-left: -8%;
+}
+
+.collapse a:hover,
+.collapse a:active,
+.collapse a.active {
+  color: #52cce2;
+  padding-bottom: 0.25rem;
+}

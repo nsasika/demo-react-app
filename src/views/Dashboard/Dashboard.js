@@ -1,7 +1,13 @@
 import React from "react";
 
+import "./common.css";
+
 const Dashboard = () => {
-  return <h1>Dashboard</h1>;
+  return (
+    <>
+      <div className="main-content">Dassboard</div>
+    </>
+  );
 };
 
 export default Dashboard;

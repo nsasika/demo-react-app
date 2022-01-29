@@ -12,7 +12,7 @@ import { AppContext } from "../../context/AppContext";
 import Styles from "./login.module.css";
 
 const LoginForm = () => {
-  const { setIsLoggedIn } = useContext(AppContext);
+  //const { setIsLoggedIn } = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const LoginForm = () => {
     let isValidForm = validateForm(username, password);
     if (isValidForm && username === "admin" && password === "admin") {
       setTimeout(() => {
-        setIsLoggedIn(true);
+        //setIsLoggedIn(true);
         navigate(ROUTE_PATH.DASHBOARD);
       }, 2500);
     } else {

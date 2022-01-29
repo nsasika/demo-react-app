@@ -1,4 +1,5 @@
 {
+  "company": { "name": "Demo Bank" },
   "customer": {},
   "account": {},
   "login": {
@@ -9,5 +10,11 @@
     },
     "buttons": { "login": "Login" }
   },
-  "errors": { "Page404": "No match found for" }
+  "errors": { "Page404": "No match found for" },
+  "navbar": {
+    "titles": {
+      "customer": "Customer Management",
+      "account": "Account Management"
+    }
+  }
 }
