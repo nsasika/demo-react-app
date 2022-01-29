@@ -1,10 +1,13 @@
 {
   "company": { "name": "Demo Bank" },
-  "customer": {},
-  "account": {},
+  "customer": {
+    "add_customer": "Add Customer",
+    "customer_list": "Customer List"
+  },
+  "account": { "add_account": "Add Account", "account_list": "Account List" },
   "login": {
     "titles": {
-      "welcome": "Welcome to Banking Portal!",
+      "welcome": "Welcome to Demo Bank Banking Portal!",
       "sign_with_credential": "Sign in with credentials",
       "incorrect_credentials": "Incorrect username or password, please try again!"
     },

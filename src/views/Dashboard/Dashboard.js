@@ -5,7 +5,7 @@ import "./common.css";
 const Dashboard = () => {
   return (
     <>
-      <div className="main-content">Dassboard</div>
+      <div className="main-content">Dassboard dvxfgchb</div>
     </>
   );
 };

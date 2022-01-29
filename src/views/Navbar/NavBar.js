@@ -24,7 +24,7 @@ const NavBar = ({ companyName }) => {
   const handleLogOut = () => navigate(ROUTE_PATH.DEFAULT);
 
   return (
-    <Navbar bg="light" expand="lg" className={classes.navBar}>
+    <Navbar bg="white" expand="lg" className={classes.navBar}>
       <Container>
         <Navbar.Brand className="classes.brand" class="navbar">
           <b>{companyName}</b>
