@@ -6,6 +6,8 @@
       "welcome": "Welcome to Banking Portal!",
       "sign_with_credential": "Sign in with credentials",
       "incorrect_credentials": "Incorrect username or password, please try again!"
-    }
-  }
+    },
+    "buttons": { "login": "Login" }
+  },
+  "errors": { "Page404": "No match found for" }
 }

@@ -1,30 +1,56 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoadingPage from "./common/loadingpage/LoadingPage";
+import Login from "./views/Login/Login";
 import routes from "./routes/routes";
-
+import { Page404 } from "./views/Page404/Page404";
+import { AppContext } from "./context/AppContext";
+import ROUTE_PATH from "./resources/router_config";
 import "./App.css";
 
-function App() {
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const appContextValue = {
+    isLoggedIn,
+    setIsLoggedIn,
+  };
+
   return (
-    <div className="App">
-      <React.Suspense fallback={<LoadingPage></LoadingPage>}>
-        <BrowserRouter>
-          <Routes>
-            {routes.map((route) => (
+    <AppContext.Provider value={appContextValue}>
+      <div className="App">
+        <React.Suspense fallback={<LoadingPage></LoadingPage>}>
+          <BrowserRouter>
+            <Routes>
+              {!isLoggedIn ? (
+                <Route
+                  key={ROUTE_PATH.DEFAULT}
+                  exact={true}
+                  path={ROUTE_PATH.DEFAULT}
+                  element={<Login />}
+                />
+              ) : (
+                routes.map((route) => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.element}
+                    exact={route.exact}
+                  />
+                ))
+              )}
               <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
+                key={ROUTE_PATH.NOT_FOUND}
+                path={ROUTE_PATH.NOT_FOUND}
+                exact={false}
+                element={<Page404 />}
               />
-            ))}
-          </Routes>
-        </BrowserRouter>
-      </React.Suspense>
-    </div>
+            </Routes>
+          </BrowserRouter>
+        </React.Suspense>
+      </div>
+    </AppContext.Provider>
   );
-}
+};
 
 export default App;

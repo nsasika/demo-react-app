@@ -1,8 +1,10 @@
-const Route_PATH = {
+const ROUTE_PATH = {
+  NOT_FOUND: "*",
   DEFAULT: "/",
+  LOGIN: "/login",
   ACCOUNT: "/account",
   CUSTOMER: "/customer",
   DASHBOARD: "/dashboard",
 };
 
-export default Route_PATH;
+export default ROUTE_PATH;

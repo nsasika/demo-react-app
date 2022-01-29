@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Row, Button, Col } from "react-bootstrap";
 import { BsFillPersonFill } from "react-icons/bs";
 import { FaUnlockAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import Route_PATH from "../../resources/router_config";
+import ROUTE_PATH from "../../resources/router_config";
 import Loader from "../../common/loader/Loader";
 import properties from "../../properties.json";
+import { AppContext } from "../../context/AppContext";
 
 import Styles from "./login.module.css";
 
 const LoginForm = () => {
+  const { setIsLoggedIn } = useContext(AppContext);
+
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -29,7 +32,8 @@ const LoginForm = () => {
     let isValidForm = validateForm(username, password);
     if (isValidForm && username === "admin" && password === "admin") {
       setTimeout(() => {
-        navigate(Route_PATH.CUSTOMER);
+        setIsLoggedIn(true);
+        navigate(ROUTE_PATH.DASHBOARD);
       }, 2500);
     } else {
       setTimeout(() => {
@@ -47,7 +51,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div class="d-flex justify-content-center pt-3">
+    <div className="d-flex justify-content-center pt-3">
       {isLoading ? (
         <Loader />
       ) : (
@@ -91,14 +95,14 @@ const LoginForm = () => {
           {isWarningVisible && (
             <Form.Group as={Row} className="mb-21">
               <Col className={Styles.warning}>
-                <div class="alert alert-danger">
+                <div className="alert alert-danger">
                   {properties.login.titles.incorrect_credentials}
                 </div>
               </Col>
             </Form.Group>
           )}
 
-          <Form.Group as={Row} className="mb-3">
+          <Form.Group as={Row} className="loginContainer">
             <Col className={Styles.buttonColumn}>
               <Button
                 variant="success"
@@ -107,7 +111,7 @@ const LoginForm = () => {
                 onClick={handleSubmit}
                 disabled={!validateForm(username, password)}
               >
-                Login
+                {properties.login.buttons.login}
               </Button>
             </Col>
           </Form.Group>
