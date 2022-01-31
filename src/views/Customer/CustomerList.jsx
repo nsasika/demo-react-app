@@ -20,8 +20,6 @@ const CustomerList = () => {
     fetchData();
   }, []);
 
-  console.log(customers);
-
   if (isError) return <>Fetching Customer List error</>;
 
   return (

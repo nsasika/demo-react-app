@@ -23,6 +23,11 @@ const routes = [
   },
 ];
 
-const Customer = () => <NavBarSub routes={routes} color="info" />;
+const Customer = () => (
+  <>
+    <NavBarSub routes={routes} color="info" />
+    <>Now you could create or see Customer list</>
+  </>
+);
 
 export default Customer;
