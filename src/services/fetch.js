@@ -1,37 +1,45 @@
-import { httpMethod } from "../utils/http_method";
-import { httpResponse } from "../utils/http_response";
-import { OK } from "../utils/http_status_code";
-import { Config } from "../resources/config";
-export const Get = (url, queryParams = null) => {
-  url = Config.serverUrl + url;
-  let headers = new Headers();
-  // headers.append("Content-Type", "application/json");
-  const options = {
-    headers,
-  };
-  return queryParams
-    ? fetch(url + "?" + queryParams, options)
-    : fetch(url, options);
+const SendRequest = (url, options) => {
+  return fetch(url, options);
 };
 
-// export const postRequest = (url, body = null) => {
-//   const requestOptions = {
-//     method: httpMethod.POST,
-//     //headers: authHeader(),
-//   };
+const BindPayload = (url, body, auth, method) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append(
+    "Content-Type",
+    auth ? "application/x-www-form-urlencoded" : "application/json"
+  );
+  const options = {
+    method,
+    headers: myHeaders,
+    body: JSON.stringify(body),
+  };
 
-//   if (body) {
-//     requestOptions.headers["Content-Type"] = "application/json";
-//     requestOptions.body = JSON.stringify(body);
-//   }
+  return SendRequest(url, options);
+};
 
-//   return fetch(baseUrl + url, requestOptions)
-//     .then((response) => {
-//       if (response.ok) return response.json();
-//       return httpResponse(response.status, "Something went wrong!");
-//     })
-//     .then((data) => {
-//       if (!Object.keys(data).includes("status")) return httpResponse(OK, data);
-//       else return data;
-//     });
-// };
+const get = async (url, queryParams = null) => {
+  url = process.env.REACT_APP_SERVER_URL + url;
+
+  const myHeaders = new Headers();
+  const options = {
+    headers: myHeaders,
+  };
+  const res = queryParams
+    ? await fetch(`${url}?${queryParams}`, options)
+    : await fetch(url, options);
+
+  return res;
+};
+
+const post = (url, body, auth = false) => {
+  url = process.env.REACT_APP_SERVER_URL + url;
+  return BindPayload(url, body, auth, "POST");
+};
+
+const put = (url, body, auth = false) => {
+  url = process.env.REACT_APP_SERVER_URL + url;
+  return BindPayload(url, body, auth, "PUT");
+};
+
+export { get, post, put };
