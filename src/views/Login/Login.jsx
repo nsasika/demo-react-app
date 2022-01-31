@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardHeader, CardBody, Col } from "reactstrap";
 
 import LoginForm from "./LoginForm";
-import logo from "../../assets/img/logo.png";
+import logo from "../../assets/img/logo.jfif";
 import properties from "../../properties.json";
 
 import Styles from "./login.module.css";
