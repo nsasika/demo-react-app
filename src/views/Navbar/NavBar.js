@@ -5,6 +5,7 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import CustomButton from "../../common/button/button.js";
 import ROUTE_PATH from "../../resources/router_config.js";
 import properties from "../../properties.json";
+import logo from "../../assets/img/logo.jfif";
 
 import classes from "./navbar.module.css";
 
@@ -26,6 +27,9 @@ const NavBar = ({ companyName }) => {
   return (
     <Navbar bg="white" expand="lg" className={classes.navBar}>
       <Container>
+        <Navbar.Brand style={{width: "50px", height: "50px"}} class="navbar">
+          <img src={logo} alt="demobank" />
+        </Navbar.Brand>
         <Navbar.Brand className="classes.brand" class="navbar">
           <b>{companyName}</b>
         </Navbar.Brand>

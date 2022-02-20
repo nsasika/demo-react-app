@@ -15,7 +15,7 @@ const Login = () => {
         <Card className="bg-secondary shadow border-0">
           <CardHeader className="bg-transparent pb-3">
             <div className={Styles.title}>
-              <img src={logo} alt="sprintcrowd" />
+              <img src={logo} alt="demobank" />
               <p>{properties.login.titles.welcome}</p>
             </div>
             <div className="text-center text-muted mb-4">

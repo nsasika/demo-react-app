@@ -6,12 +6,12 @@ const Dashboard = () => {
   return (
     <>
       <main id="main">
-        <h1 id="title">Dr. Norman Borlaug</h1>
-        <p>The man who saved a billion lives</p>
+        <h1 id="title">Demo Bank Pvt Ltd</h1>
+        <p>The bank who served a billion lives</p>
         <figure id="img-div">
           <img
             id="image"
-            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/tribute-page-main-image.jpg"
+            src="https://trainingindustry.com/content/uploads/2021/03/Customer-Service-Training-for-Your-Bank-4.5.21-1920x1080.jpg"
             alt="Dr. Norman Borlaug seen standing in Mexican wheat field with a group of biologists"
           />
           <figcaption id="img-caption">
@@ -115,6 +115,7 @@ const Dashboard = () => {
             If you have time, you should read more about this incredible human
             being on his
             <a
+              rel="noreferrer"
               id="tribute-link"
               href="https://en.wikipedia.org/wiki/Norman_Borlaug"
               target="_blank"
